@@ -1,0 +1,29 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{96D3EEA0-E61E-BE85-9557-CD4AE89C1A8F}") = "Preloadability", "Assembly-CSharp.csproj", "{C8BEB9E8-B16B-2157-9D66-69A8B8A537F9}"
+EndProject
+Project("{96D3EEA0-E61E-BE85-9557-CD4AE89C1A8F}") = "Preloadability", "Assembly-CSharp-Editor.csproj", "{1F42FC9C-F8B6-13D6-518A-875C2E2E08F4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C8BEB9E8-B16B-2157-9D66-69A8B8A537F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8BEB9E8-B16B-2157-9D66-69A8B8A537F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8BEB9E8-B16B-2157-9D66-69A8B8A537F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8BEB9E8-B16B-2157-9D66-69A8B8A537F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F42FC9C-F8B6-13D6-518A-875C2E2E08F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F42FC9C-F8B6-13D6-518A-875C2E2E08F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F42FC9C-F8B6-13D6-518A-875C2E2E08F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F42FC9C-F8B6-13D6-518A-875C2E2E08F4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
