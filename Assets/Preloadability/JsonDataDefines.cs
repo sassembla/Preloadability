@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 
-[Serializable] public class AssetList {
+[Serializable] public class BundleList {
 	public int version;
-	public List<AssetData> bundles;
+	public List<BundleData> bundles;
 }
 
-[Serializable] public class AssetData {
+[Serializable] public class BundleData {
 	public string bundleName;
 	public int version;
 	public uint crc;
@@ -15,6 +15,5 @@ using System.Collections.Generic;
 }
 
 [Serializable] public class PreloadList {
-	public string version;
 	public List<string> preloadBundleNames;
 }
