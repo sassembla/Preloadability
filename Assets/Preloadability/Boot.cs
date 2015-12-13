@@ -22,8 +22,6 @@ public class Boot : MonoBehaviour {
 
 	// list of preloading Asset.
 	private List<string> preloadList = new List<string>();
-	// integer for counting max preloading assets.
-	private int preloadCount;
 
 
 	/*
@@ -61,7 +59,6 @@ public class Boot : MonoBehaviour {
 		// got preload list for "Boot" scene. let's preload it.
 		var preloadListForLoad = JsonUtility.FromJson<PreloadList>(www2.text);
 		preloadList = new List<string>(preloadListForLoad.preloadBundleNames);
-		preloadCount = preloadList.Count;
 
 		// 3. start preload bundles.
 		foreach (var bundleName in preloadListForLoad.preloadBundleNames) {
@@ -85,7 +82,7 @@ public class Boot : MonoBehaviour {
 						*/
 						preloadIsDone = true;
 
-						// このへんで指モデルのローディング
+						// このへんでローディングバーのロード
 					}
 				}
 			));
@@ -94,7 +91,6 @@ public class Boot : MonoBehaviour {
 
 	void OnGUI () {
 		if (!preloadIsDone) {
-			GUI.Button(new Rect(0,0,200,100), "preloading... " + preloadList.Count + " of " + preloadCount);
 			return;
 		}
 
@@ -105,8 +101,6 @@ public class Boot : MonoBehaviour {
 
 		switch (onDemandLoadingState) {
 			case OnDemandLoadingState.STATE_READY:{
-				GUI.Button(new Rect(0,0,400,100), "downloading texture...");
-
 				/*
 					start on-demand loading.
 					texture appears when this loading is over.
@@ -115,24 +109,7 @@ public class Boot : MonoBehaviour {
 				// set state to loading.
 				onDemandLoadingState = OnDemandLoadingState.STATE_BOOTING;
 
-				// use this resource name for this button's texture.
-				var resourceName = "a1.png";
-
-				// get resource contained bundle name from shared onMemoryAsstList.
-				var containedBundleData = AssetBundleLoader.onMemoryBundleList.bundles
-					.Where(bundle => bundle.resources.Contains(resourceName))
-					.FirstOrDefault();
-				
-				StartCoroutine(AssetBundleLoader.DownloadBundleThenLoadAsset(
-					resourceName,
-					containedBundleData,
-					(Texture2D t) => {
-						onDemandTexture = t;
-
-						// on-demand loading is done.
-						onDemandLoadingState = OnDemandLoadingState.STATE_BOOTED;
-					}
-				));
+				StartOndemandLoading();
 				break;
 			}
 			case OnDemandLoadingState.STATE_BOOTING: {
@@ -150,6 +127,27 @@ public class Boot : MonoBehaviour {
 			}
 		}
 			
+	}
+
+	private void StartOndemandLoading () {
+		// use this resource name for this button's texture.
+		var resourceName = "a1.png";
+
+		// get resource contained bundle name from shared onMemoryAsstList.
+		var containedBundleData = AssetBundleLoader.onMemoryBundleList.bundles
+			.Where(bundle => bundle.resources.Contains(resourceName))
+			.FirstOrDefault();
+		
+		StartCoroutine(AssetBundleLoader.DownloadBundleThenLoadAsset(
+			resourceName,
+			containedBundleData,
+			(Texture2D t) => {
+				onDemandTexture = t;
+
+				// on-demand loading is done.
+				onDemandLoadingState = OnDemandLoadingState.STATE_BOOTED;
+			}
+		));
 	}
 
 
