@@ -50,9 +50,6 @@ public class AssetBundleLoader {
 
 		var loadingBundleUrl = Settings.RESOURCE_URLBASE + "bundles/" + onDemandLoadingBundleName;
 
-		var cached = false;
-		if (!Caching.IsVersionCached(loadingBundleUrl, Settings.FIXED_VERSION_NUM)) cached = true;
-
 		var www = WWW.LoadFromCacheOrDownload(loadingBundleUrl, Settings.FIXED_VERSION_NUM, crc);
 		yield return www;
 
@@ -62,9 +59,6 @@ public class AssetBundleLoader {
 
 		var assetBundle = www.assetBundle;
 		www.Dispose();
-
-		if (cached) Debug.Log("on-demand loading asset is already cached. " + loadingBundleUrl);
-		else Debug.Log("on-demand loading asset is just cached. " + loadingBundleUrl);
 
 		var loadedResource = (T)assetBundle.LoadAsset(resourceName, typeof(T));
 		Succeeded(loadedResource);
