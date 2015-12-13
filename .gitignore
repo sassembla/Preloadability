@@ -6,3 +6,9 @@ Library/*
 ProjectSettings/*
 
 Temp/*
+
+Assembly-CSharp-Editor.csproj
+
+Assembly-CSharp.csproj
+
+Preloadability.sln

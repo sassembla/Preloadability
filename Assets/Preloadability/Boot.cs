@@ -1,49 +1,34 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-
 public class Boot : MonoBehaviour {
 	
 	// flag for waiting preload load.
 	private bool preloadIsDone = false;
 	
-	// flag for waiting on-demand load,
-	private enum OnDemandLoadingState : int {
-		STATE_READY,
-		STATE_BOOTING,
-		STATE_BOOTED
-	};
-	private OnDemandLoadingState onDemandLoadingState;
-
 
 	// list of preloading Asset.
 	private List<string> preloadList = new List<string>();
 
 
-	/*
-		Resources for this scene.
-	*/
-
-	// texture of loading promotion. load this texture from web before user control.
-	private Texture2D preloadCharaTexture;
-
-	// texture of button. load this texture from web on-demand.
-	private Texture2D onDemandTexture;
-
-
 	void Start () {
-		// delete all cache before running.
-		Caching.CleanCache();
-
 		// get whole asset list & preload list for this "Boot" scene.
 		StartCoroutine(GetAllAssetListAndPreloadList());
 	}
 
 	public IEnumerator GetAllAssetListAndPreloadList () {
+		while (!Caching.ready) {
+			yield return null;
+		}
+
+		// delete all cache before running.
+		Caching.CleanCache();
+
 		
 		// 1. load whole bundle list from web.
 		var www1 = new WWW(Settings.RESOURCE_URLBASE + "bundle_list.json");
@@ -82,7 +67,38 @@ public class Boot : MonoBehaviour {
 						*/
 						preloadIsDone = true;
 
-						// このへんでローディングバーのロード
+						/*
+							ready loading bar.
+							instantiate prefab which is already downloaded.
+						*/
+						var resourceName = "Assets/BundledResources/Resources/Loading/ProgressBar.prefab";
+
+						var containedBundleData = AssetBundleLoader.onMemoryBundleList.bundles
+							.Where(bundle => bundle.resources.Contains(resourceName))
+							.FirstOrDefault();
+						
+						StartCoroutine(AssetBundleLoader.DownloadBundleThenLoadAsset(
+							resourceName,
+							containedBundleData,
+							(GameObject loadingBarPrefab) => {
+								var loadingBarObj = Instantiate(loadingBarPrefab);
+							
+								// add loadingBar object to canvas.
+								var canvas = GameObject.Find("Canvas");
+								loadingBarObj.transform.SetParent(canvas.transform, false);
+
+								// hold progress image.
+								loadingBarProgressImage = loadingBarObj.transform.Find("ProgressBar").GetComponent<Image>() as Image;
+							}
+						));
+
+						/*
+							start on-demand loading.
+							hand model & button texture.
+
+							model & texture will appear after downloading some AssetBundle.
+						*/
+						StartOndemandLoading();						
 					}
 				}
 			));
@@ -97,61 +113,108 @@ public class Boot : MonoBehaviour {
 		/*
 			preloading is done. show preloded resources.
 		*/
-		ShowOndemandLoadingPromotion();
-
-		switch (onDemandLoadingState) {
-			case OnDemandLoadingState.STATE_READY:{
-				/*
-					start on-demand loading.
-					texture appears when this loading is over.
-				*/
-
-				// set state to loading.
-				onDemandLoadingState = OnDemandLoadingState.STATE_BOOTING;
-
-				StartOndemandLoading();
-				break;
-			}
-			case OnDemandLoadingState.STATE_BOOTING: {
-				if (GUI.Button(new Rect(0,0,400,100), "downloading texture...")) {}
-				break;
-			}
-			case OnDemandLoadingState.STATE_BOOTED: {
-				/*
-					on-demand loading is done. use loaded resources.
-				*/
-				if (GUI.Button(new Rect(0,0,300,300), onDemandTexture)) {
-					Application.LoadLevelAsync("Title");
-				}
-				break;
-			}
-		}
-			
+		
+		ShowOndemandLoadingBar();
 	}
+
+	
+	private List<string> onDemandLoaingBundleNames = new List<string>();
+	private float onDemandLoadingMax = 0f;
 
 	private void StartOndemandLoading () {
 		// use this resource name for this button's texture.
-		var resourceName = "a1.png";
+		var canvas = GameObject.Find("Canvas");
 
-		// get resource contained bundle name from shared onMemoryAsstList.
-		var containedBundleData = AssetBundleLoader.onMemoryBundleList.bundles
-			.Where(bundle => bundle.resources.Contains(resourceName))
-			.FirstOrDefault();
-		
-		StartCoroutine(AssetBundleLoader.DownloadBundleThenLoadAsset(
-			resourceName,
-			containedBundleData,
-			(Texture2D t) => {
-				onDemandTexture = t;
+		// add button to GUI.
+		{
+			var buttonObj = new GameObject("DoneButton", typeof(RectTransform));
+			buttonObj.transform.SetParent(canvas.transform, false);
+			buttonObj.AddComponent<CanvasRenderer>();
+			var buttonImage = buttonObj.AddComponent<Image>();
+			buttonImage.rectTransform.anchoredPosition = new Vector2(124, -250);
+			buttonImage.rectTransform.sizeDelta = new Vector2(420, 116);
 
-				// on-demand loading is done.
-				onDemandLoadingState = OnDemandLoadingState.STATE_BOOTED;
-			}
-		));
+			var buttonTextObj = new GameObject("DoneButtonText", typeof(RectTransform));
+			buttonTextObj.transform.SetParent(buttonObj.transform, false);
+			buttonTextObj.AddComponent<CanvasRenderer>();
+			var buttonText = buttonTextObj.AddComponent<Text>();
+			buttonText.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
+			buttonText.rectTransform.sizeDelta = new Vector2(420, 60);
+			buttonText.text = "loading button texture...";
+			buttonText.fontSize = 38;
+			buttonText.alignment = TextAnchor.MiddleCenter;
+			buttonText.color = Color.black;
+			
+			var button = buttonObj.AddComponent<Button>();
+			button.onClick.AddListener(
+				delegate {
+					Debug.LogError("now loading on demand...");
+				}
+			);
+
+
+			var resourceName = "Assets/BundledResources/Resources/OnDemandOnBoot/GoToNextButton/sushi.jpg";
+
+			// get resource contained bundle name from shared onMemoryAsstList.
+			var containedBundleData = AssetBundleLoader.onMemoryBundleList.bundles
+				.Where(bundle => bundle.resources.Contains(resourceName))
+				.FirstOrDefault();
+			
+			var bundleName = containedBundleData.bundleName;
+			onDemandLoaingBundleNames.Add(bundleName);
+
+			// load button image.
+			StartCoroutine(AssetBundleLoader.DownloadBundleThenLoadAsset(
+				resourceName,
+				containedBundleData,
+				(Sprite t) => {
+					buttonText.text = string.Empty;
+					buttonImage.sprite = t;
+
+					button.onClick.RemoveAllListeners();
+
+					button.onClick.AddListener(
+						delegate {
+							Application.LoadLevelAsync("Title");
+						}
+					);
+					onDemandLoaingBundleNames.Remove(bundleName);
+				}
+			));
+		}
+
+
+		// load hand model
+		{
+			var resourceName = "Assets/BundledResources/Resources/OnDemandOnBoot/Hand/hand.prefab";
+
+			var containedBundleData = AssetBundleLoader.onMemoryBundleList.bundles
+				.Where(bundle => bundle.resources.Contains(resourceName))
+				.FirstOrDefault();
+			
+			var bundleName = containedBundleData.bundleName;
+			onDemandLoaingBundleNames.Add(bundleName);
+			onDemandLoadingMax = onDemandLoaingBundleNames.Count;
+
+			// load hand prefab then 
+			StartCoroutine(AssetBundleLoader.DownloadBundleThenLoadAsset(
+				resourceName,
+				containedBundleData,
+				(GameObject hand) => {
+					var handObj = Instantiate(hand);
+					handObj.transform.SetParent(canvas.transform, false);
+
+					handObj.AddComponent<HandRotation>();
+
+					onDemandLoaingBundleNames.Remove(bundleName);
+				}
+			));
+		}
 	}
 
+	private Image loadingBarProgressImage;
 
-	private void ShowOndemandLoadingPromotion () {
-		Debug.Log("プリロードが終わったらどうしようかな、その素材に「次の素材がOn-demand loadされるよ」って書くか。ブランクのボタンを指差してるモデルでも動かそう。");
+	private void ShowOndemandLoadingBar () {
+		if (loadingBarProgressImage != null) loadingBarProgressImage.fillAmount = ((onDemandLoadingMax - onDemandLoaingBundleNames.Count) * 1.0f) / onDemandLoadingMax;
 	}
 }

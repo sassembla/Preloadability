@@ -1,0 +1,12 @@
+ManifestFileVersion: 0
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: boot_preload.assetbundle
+      Dependencies: {}
+    Info_1:
+      Name: boot_ondemand_0.assetbundle
+      Dependencies: {}
+    Info_2:
+      Name: boot_ondemand_1.assetbundle
+      Dependencies: {}

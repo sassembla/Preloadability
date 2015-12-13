@@ -1,0 +1,31 @@
+ManifestFileVersion: 0
+CRC: 3225807147
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 2c6dc3bed916294a355fa75b791d29bd
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 40176a9326f646f782f1f44f6b3ddd44
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+- Class: 114
+  Script: {fileID: 1573420865, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+- Class: 222
+  Script: {instanceID: 0}
+- Class: 224
+  Script: {instanceID: 0}
+Assets:
+- Assets/BundledResources/Resources/Loading/ProgressBar.prefab
+- Assets/BundledResources/Resources/Loading/loadCircle.png
+Dependencies: []

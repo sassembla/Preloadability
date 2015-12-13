@@ -1,0 +1,48 @@
+ManifestFileVersion: 0
+CRC: 2548608596
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 86f06ab56c4704d24b9272fdc65f2058
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: f47e5080155a0c3ac2e9ffbbc14e366d
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+Assets:
+- Assets/BundledResources/Resources/OnDemandOnBoot/Hand/Materials/Group59770Mat.mat
+- Assets/BundledResources/Resources/OnDemandOnBoot/Hand/Materials/Group51057Mat.mat
+- Assets/BundledResources/Resources/OnDemandOnBoot/Hand/Materials/Group42123Mat.mat
+- Assets/BundledResources/Resources/OnDemandOnBoot/Hand/Materials/Group62056Mat.mat
+- Assets/BundledResources/Resources/OnDemandOnBoot/Hand/Materials/Group13100Mat.mat
+- Assets/BundledResources/Resources/OnDemandOnBoot/Hand/Materials/Group35404Mat.mat
+- Assets/BundledResources/Resources/OnDemandOnBoot/Hand/Materials/Group13507Mat.mat
+- Assets/BundledResources/Resources/OnDemandOnBoot/Hand/Materials/Group35590Mat.mat
+- Assets/BundledResources/Resources/OnDemandOnBoot/Hand/Materials/Group51128Mat.mat
+- Assets/BundledResources/Resources/OnDemandOnBoot/Hand/Materials/Group57348Mat.mat
+- Assets/BundledResources/Resources/OnDemandOnBoot/Hand/Materials/Group35877Mat.mat
+- Assets/BundledResources/Resources/OnDemandOnBoot/Hand/Materials/Group13445Mat.mat
+- Assets/BundledResources/Resources/OnDemandOnBoot/Hand/hand.prefab
+- Assets/BundledResources/Resources/OnDemandOnBoot/Hand/Materials/Group35489Mat.mat
+- Assets/BundledResources/Resources/OnDemandOnBoot/Hand/Materials/Group41676Mat.mat
+- Assets/BundledResources/Resources/OnDemandOnBoot/Hand/preloadhand.OBJ
+- Assets/BundledResources/Resources/OnDemandOnBoot/Hand/Materials/Group35279Mat.mat
+- Assets/BundledResources/Resources/OnDemandOnBoot/Hand/Materials/Group43207Mat.mat
+- Assets/BundledResources/Resources/OnDemandOnBoot/Hand/Materials/Group13381Mat.mat
+- Assets/BundledResources/Resources/OnDemandOnBoot/Hand/Materials/Group40038Mat.mat
+- Assets/BundledResources/Resources/OnDemandOnBoot/Hand/Materials/ZSphere_0Mat.mat
+Dependencies: []
