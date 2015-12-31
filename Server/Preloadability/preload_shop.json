@@ -1,0 +1,9 @@
+{
+	"preloadBundleNames":[
+		"shop_preload_0.assetbundle",
+		"shop_preload_1.assetbundle",
+		"shop_preload_2.assetbundle",
+		"shop_preload_3.assetbundle",
+		"shop_preload_4.assetbundle"
+	]
+}

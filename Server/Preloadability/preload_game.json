@@ -1,0 +1,7 @@
+{
+	"preloadBundleNames":[
+		"game_preload_0.assetbundle",
+		"game_preload_1.assetbundle",
+		"game_preload_2.assetbundle"
+	]
+}

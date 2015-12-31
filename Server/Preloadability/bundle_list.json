@@ -1,0 +1,151 @@
+{
+    "version": 1,
+    "bundles": [
+        {
+            "bundleName": "boot_preload.assetbundle",
+            "version": 1,
+            "crc": 1327965124,
+            "size": 100,
+            "resources": [
+                "Assets/BundledResources/Resources/PreloadOnBoot/ProgressBar.prefab"
+            ]
+        },
+        {
+            "bundleName": "boot_ondemand_0.assetbundle",
+            "version": 1,
+            "crc": 2959455841,
+            "size": 100,
+            "resources": [
+                "Assets/BundledResources/Resources/OnDemandOnBoot/Hand/hand.prefab"
+            ]
+        },
+        {
+            "bundleName": "boot_ondemand_1.assetbundle",
+            "version": 1,
+            "crc": 2162336783,
+            "size": 100,
+            "resources": [
+                "Assets/BundledResources/Resources/OnDemandOnBoot/GoToNextButton/sushi.jpg"
+            ]
+        },
+        {
+            "bundleName": "title_preload.assetbundle",
+            "version": 1,
+            "crc": 2519825288,
+            "size": 100,
+            "resources": [
+                "Assets/BundledResources/Resources/PreloadOnTitle/title.png",
+                "Assets/BundledResources/Resources/PreloadOnTitle/Image.prefab"
+            ]
+        },
+        {
+            "bundleName": "game_preload_0.assetbundle",
+            "version": 1,
+            "crc": 1066036167,
+            "size": 100,
+            "resources": [
+                "Assets/BundledResources/Resources/PreloadOnGame/chara.prefab"
+            ]
+        },
+        {
+            "bundleName": "game_preload_1.assetbundle",
+            "version": 1,
+            "crc": 3161947750,
+            "size": 100,
+            "resources": [
+                "Assets/BundledResources/Resources/PreloadOnGame/block.png"
+            ]
+        },
+        {
+            "bundleName": "game_preload_2.assetbundle",
+            "version": 1,
+            "crc": 3760119900,
+            "size": 100,
+            "resources": [
+                "Assets/BundledResources/Resources/PreloadOnGame/box.prefab"
+            ]
+        },
+        {
+            "bundleName": "shop_preload_0.assetbundle",
+            "version": 1,
+            "crc": 3441075971,
+            "size": 100,
+            "resources": [
+                "Assets/BundledResources/Resources/PreloadOnShop/maguro.png"
+            ]
+        },
+        {
+            "bundleName": "shop_preload_1.assetbundle",
+            "version": 1,
+            "crc": 1151857744,
+            "size": 100,
+            "resources": [
+                "Assets/BundledResources/Resources/PreloadOnShop/tamago.png"
+            ]
+        },
+        {
+            "bundleName": "shop_preload_2.assetbundle",
+            "version": 1,
+            "crc": 3796230935,
+            "size": 100,
+            "resources": [
+                "Assets/BundledResources/Resources/PreloadOnShop/salmon.png"
+            ]
+        },
+        {
+            "bundleName": "shop_preload_3.assetbundle",
+            "version": 1,
+            "crc": 1604594385,
+            "size": 100,
+            "resources": [
+                "Assets/BundledResources/Resources/PreloadOnShop/ebi.png"
+            ]
+        },
+        {
+            "bundleName": "shop_preload_4.assetbundle",
+            "version": 1,
+            "crc": 2818089686,
+            "size": 100,
+            "resources": [
+                "Assets/BundledResources/Resources/PreloadOnShop/menu.png"
+            ]
+        },
+        {
+            "bundleName": "shop_ondemand_0.assetbundle",
+            "version": 1,
+            "crc": 3898875698,
+            "size": 100,
+            "resources": [
+                "Assets/BundledResources/Resources/OnDemandOnShop/maguro.png"
+            ]
+        },
+        {
+            "bundleName": "shop_ondemand_1.assetbundle",
+            "version": 1,
+            "crc": 578295054,
+            "size": 100,
+            "resources": [
+                "Assets/BundledResources/Resources/OnDemandOnShop/tamago.png"
+            ]
+        },
+        {
+            "bundleName": "shop_ondemand_2.assetbundle",
+            "version": 1,
+            "crc": 1820841167,
+            "size": 100,
+            "resources": [
+                "Assets/BundledResources/Resources/OnDemandOnShop/salmon.png"
+            ]
+        },
+        {
+            "bundleName": "shop_ondemand_3.assetbundle",
+            "version": 1,
+            "crc": 1405054985,
+            "size": 100,
+            "resources": [
+                "Assets/BundledResources/Resources/OnDemandOnShop/ebi.png"
+            ]
+        }
+
+    ]
+}
