@@ -1,15 +1,17 @@
 ManifestFileVersion: 0
-CRC: 3365527174
+CRC: 578295054
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: e855554c83e80ee3ed332d4dc7ff94c0
+    Hash: f7c5819dedffc821348b59f41db656b0
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 6759894fca659e2049f05064db45ce61
+    Hash: 9dea23ffc7e96552740e12d1ee5309d8
 HashAppended: 0
 ClassTypes:
 - Class: 28
+  Script: {instanceID: 0}
+- Class: 213
   Script: {instanceID: 0}
 Assets:
 - Assets/BundledResources/Resources/OnDemandOnShop/tamago.png

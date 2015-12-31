@@ -1,15 +1,17 @@
 ManifestFileVersion: 0
-CRC: 3584511809
+CRC: 3898875698
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: bdd1e3eaca3929bd87082b0dd1384eb8
+    Hash: 318475f6aca421cc7847d700edf1046a
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 6759894fca659e2049f05064db45ce61
+    Hash: 9dea23ffc7e96552740e12d1ee5309d8
 HashAppended: 0
 ClassTypes:
 - Class: 28
+  Script: {instanceID: 0}
+- Class: 213
   Script: {instanceID: 0}
 Assets:
 - Assets/BundledResources/Resources/OnDemandOnShop/maguro.png
