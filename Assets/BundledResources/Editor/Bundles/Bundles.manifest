@@ -37,3 +37,15 @@ AssetBundleManifest:
     Info_11:
       Name: shop_preload_4.assetbundle
       Dependencies: {}
+    Info_12:
+      Name: shop_ondemand_3.assetbundle
+      Dependencies: {}
+    Info_13:
+      Name: shop_ondemand_0.assetbundle
+      Dependencies: {}
+    Info_14:
+      Name: shop_ondemand_2.assetbundle
+      Dependencies: {}
+    Info_15:
+      Name: shop_ondemand_1.assetbundle
+      Dependencies: {}

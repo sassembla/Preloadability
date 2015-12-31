@@ -2,16 +2,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.UI;
 
 public class Shop : MonoBehaviour {
     
     private List<string> preloadList = new List<string>();
     
-    private bool preloadIsDone;
+    private GameObject canvas;
+    private GameObject detailButton;
 
 
     // Use this for initialization
     void Start () {
+        canvas = GameObject.Find("Canvas");
+        detailButton = GameObject.Find("DetailButton");
+        
         // get whole asset list & preload for "Game" scene.
 		StartCoroutine(GetScenePreloadList());
     }
@@ -30,7 +35,6 @@ public class Shop : MonoBehaviour {
 
 			/*
 				start preload.
-				set preloadIsDone -> true when all preloads are over.
 			*/
 			StartCoroutine(AssetBundleLoader.PreloadBundle(
 				bundleName, 
@@ -41,31 +45,182 @@ public class Shop : MonoBehaviour {
 						/*
 							all preloaded assets are cached.
 						*/
-						preloadIsDone = true;
                         
-                        Debug.Log("んーと、アイテムの画像とかが取得できたんで、それらを表示する");		
+                        // MenuChara
+                        {
+                            var resourceName =  "Assets/BundledResources/Resources/PreloadOnShop/menu.png";
+                            var containedBundleData = AssetBundleLoader.onMemoryBundleList.bundles
+                                .Where(bundle => bundle.resources.Contains(resourceName))
+                                .FirstOrDefault();
+                                
+                            StartCoroutine(AssetBundleLoader.DownloadBundleThenLoadAsset(
+                                resourceName,
+                                containedBundleData,
+                                (Sprite s) => {
+                                    var menuBgImage = GameObject.Find("MenuChara").GetComponent<Image>();
+                                    menuBgImage.color = Color.white;
+                                    menuBgImage.sprite = s;
+                                }
+                            ));
+                        }
+                        
+                        // buttons images.
+                        {
+                            var resourceName =  "Assets/BundledResources/Resources/PreloadOnShop/maguro.png";
+                            var containedBundleData = AssetBundleLoader.onMemoryBundleList.bundles
+                                .Where(bundle => bundle.resources.Contains(resourceName))
+                                .FirstOrDefault();
+                                
+                            StartCoroutine(AssetBundleLoader.DownloadBundleThenLoadAsset(
+                                resourceName,
+                                containedBundleData,
+                                (Sprite s) => {
+                                    var buttonImage = GameObject.Find("Button0").GetComponent<Image>();
+                                    buttonImage.color = Color.white;
+                                    buttonImage.sprite = s;
+                                }
+                            ));
+                        }
+                        
+                        {
+                            var resourceName =  "Assets/BundledResources/Resources/PreloadOnShop/tamago.png";
+                            var containedBundleData = AssetBundleLoader.onMemoryBundleList.bundles
+                                .Where(bundle => bundle.resources.Contains(resourceName))
+                                .FirstOrDefault();
+                                
+                            StartCoroutine(AssetBundleLoader.DownloadBundleThenLoadAsset(
+                                resourceName,
+                                containedBundleData,
+                                (Sprite s) => {
+                                    var buttonImage = GameObject.Find("Button1").GetComponent<Image>();
+                                    buttonImage.color = Color.white;
+                                    buttonImage.sprite = s;
+                                }
+                            ));
+                        }
+                        
+                        {
+                            var resourceName =  "Assets/BundledResources/Resources/PreloadOnShop/salmon.png";
+                            var containedBundleData = AssetBundleLoader.onMemoryBundleList.bundles
+                                .Where(bundle => bundle.resources.Contains(resourceName))
+                                .FirstOrDefault();
+                                
+                            StartCoroutine(AssetBundleLoader.DownloadBundleThenLoadAsset(
+                                resourceName,
+                                containedBundleData,
+                                (Sprite s) => {
+                                    var buttonImage = GameObject.Find("Button2").GetComponent<Image>();
+                                    buttonImage.color = Color.white;
+                                    buttonImage.sprite = s;
+                                }
+                            ));
+                        }
+                        
+                        {
+                            var resourceName =  "Assets/BundledResources/Resources/PreloadOnShop/ebi.png";
+                            var containedBundleData = AssetBundleLoader.onMemoryBundleList.bundles
+                                .Where(bundle => bundle.resources.Contains(resourceName))
+                                .FirstOrDefault();
+                                
+                            StartCoroutine(AssetBundleLoader.DownloadBundleThenLoadAsset(
+                                resourceName,
+                                containedBundleData,
+                                (Sprite s) => {
+                                    var buttonImage = GameObject.Find("Button3").GetComponent<Image>();
+                                    buttonImage.color = Color.white;
+                                    buttonImage.sprite = s;
+                                }
+                            ));
+                        }
 					}
 				}
 			));
 		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	   
-	}
+    
     
     public void GetMaguro () {
-        Debug.Log("押したら、このアイテムの詳細を取得しようとして、詳細の取得完了時にオンデマンドでDL、完了したら表示を行う。");
-    }
-    public void GetSalmon () {
+        var buttonImage = GameObject.Find("DetailButton").GetComponent<Image>();
+        buttonImage.color = Color.gray;
         
+        detailButton.transform.SetParent(canvas.transform, true);
+        var resourceName =  "Assets/BundledResources/Resources/OnDemandOnShop/maguro.png";
+        var containedBundleData = AssetBundleLoader.onMemoryBundleList.bundles
+            .Where(bundle => bundle.resources.Contains(resourceName))
+            .FirstOrDefault();
+            
+        StartCoroutine(AssetBundleLoader.DownloadBundleThenLoadAsset(
+            resourceName,
+            containedBundleData,
+            (Sprite s) => {
+                buttonImage.color = Color.white;
+                buttonImage.sprite = s;
+            }
+        ));
     }
     public void GetTamago () {
+        var buttonImage = GameObject.Find("DetailButton").GetComponent<Image>();
+        buttonImage.color = Color.gray;
         
+        detailButton.transform.SetParent(canvas.transform, true);
+        var resourceName =  "Assets/BundledResources/Resources/OnDemandOnShop/tamago.png";
+        var containedBundleData = AssetBundleLoader.onMemoryBundleList.bundles
+            .Where(bundle => bundle.resources.Contains(resourceName))
+            .FirstOrDefault();
+            
+        StartCoroutine(AssetBundleLoader.DownloadBundleThenLoadAsset(
+            resourceName,
+            containedBundleData,
+            (Sprite s) => {
+                buttonImage.color = Color.white;
+                buttonImage.sprite = s;
+            }
+        ));
+    }
+    public void GetSalmon () {
+        var buttonImage = GameObject.Find("DetailButton").GetComponent<Image>();
+        buttonImage.color = Color.gray;
+        
+        detailButton.transform.SetParent(canvas.transform, true);
+        var resourceName =  "Assets/BundledResources/Resources/OnDemandOnShop/salmon.png";
+        var containedBundleData = AssetBundleLoader.onMemoryBundleList.bundles
+            .Where(bundle => bundle.resources.Contains(resourceName))
+            .FirstOrDefault();
+            
+        StartCoroutine(AssetBundleLoader.DownloadBundleThenLoadAsset(
+            resourceName,
+            containedBundleData,
+            (Sprite s) => {
+                buttonImage.color = Color.white;
+                buttonImage.sprite = s;
+            }
+        ));
     }
     public void GetEbi () {
+        var buttonImage = GameObject.Find("DetailButton").GetComponent<Image>();
+        buttonImage.color = Color.gray;
         
+        detailButton.transform.SetParent(canvas.transform, true);
+        var resourceName =  "Assets/BundledResources/Resources/OnDemandOnShop/ebi.png";
+        var containedBundleData = AssetBundleLoader.onMemoryBundleList.bundles
+            .Where(bundle => bundle.resources.Contains(resourceName))
+            .FirstOrDefault();
+            
+        StartCoroutine(AssetBundleLoader.DownloadBundleThenLoadAsset(
+            resourceName,
+            containedBundleData,
+            (Sprite s) => {
+                buttonImage.color = Color.white;
+                buttonImage.sprite = s;
+            }
+        ));
     }
     
+    public void BackToTitle () {
+        Application.LoadLevelAsync("Title");
+    }
+    
+    public void HideDetail () {
+        detailButton.transform.SetParent(this.transform);
+    }
 }
