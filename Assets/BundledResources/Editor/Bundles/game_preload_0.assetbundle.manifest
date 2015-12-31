@@ -1,0 +1,33 @@
+ManifestFileVersion: 0
+CRC: 1066036167
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 0b42c4cd1f092a9968c5f9b026214871
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: f718ca7542309e546cd5427a2be62f76
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 50
+  Script: {instanceID: 0}
+- Class: 61
+  Script: {instanceID: 0}
+- Class: 212
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/BundledResources/Resources/PreloadOnGame/chara.prefab
+- Assets/BundledResources/Resources/PreloadOnGame/lowquality.png
+Dependencies: []

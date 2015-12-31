@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 3225807147
+CRC: 1327965124
 Hashes:
   AssetFileHash:
     serializedVersion: 2
@@ -26,6 +26,6 @@ ClassTypes:
 - Class: 224
   Script: {instanceID: 0}
 Assets:
-- Assets/BundledResources/Resources/Loading/ProgressBar.prefab
-- Assets/BundledResources/Resources/Loading/loadCircle.png
+- Assets/BundledResources/Resources/PreloadOnBoot/ProgressBar.prefab
+- Assets/BundledResources/Resources/PreloadOnBoot/loadCircle.png
 Dependencies: []

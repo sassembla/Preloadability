@@ -1,9 +1,5 @@
 
-Assets/SublimeSocketAsset/*
-
 Library/*
-
-ProjectSettings/*
 
 Temp/*
 
@@ -12,3 +8,9 @@ Assembly-CSharp-Editor.csproj
 Assembly-CSharp.csproj
 
 Preloadability.sln
+
+Assets/VSCode.meta
+
+Assets/VSCode/*
+
+.vscode/launch.json

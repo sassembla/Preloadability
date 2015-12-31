@@ -10,3 +10,30 @@ AssetBundleManifest:
     Info_2:
       Name: boot_ondemand_1.assetbundle
       Dependencies: {}
+    Info_3:
+      Name: title_preload.assetbundle
+      Dependencies: {}
+    Info_4:
+      Name: game_preload_2.assetbundle
+      Dependencies: {}
+    Info_5:
+      Name: game_preload_0.assetbundle
+      Dependencies: {}
+    Info_6:
+      Name: game_preload_1.assetbundle
+      Dependencies: {}
+    Info_7:
+      Name: shop_preload_3.assetbundle
+      Dependencies: {}
+    Info_8:
+      Name: shop_preload_0.assetbundle
+      Dependencies: {}
+    Info_9:
+      Name: shop_preload_2.assetbundle
+      Dependencies: {}
+    Info_10:
+      Name: shop_preload_1.assetbundle
+      Dependencies: {}
+    Info_11:
+      Name: shop_preload_4.assetbundle
+      Dependencies: {}

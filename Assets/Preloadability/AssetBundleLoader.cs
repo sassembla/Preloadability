@@ -11,7 +11,12 @@ public class AssetBundleLoader {
 		static, initialize once, shared by every scene.
 	*/
 	public static BundleList onMemoryBundleList = new BundleList();
+    
+    public static Dictionary<string, object> loadedAssetDict = new Dictionary<string, object>();
 
+    public static List<string> loadingResourceNames = new List<string>();
+    
+    
 	/**
 		Download specific AssetBundle before control.
 	*/
@@ -20,12 +25,16 @@ public class AssetBundleLoader {
 		uint crc,
 		Action<string> Succeeded
 	) {
-		var preloadingBundleUrl = Settings.RESOURCE_URLBASE + "bundles/" + preloadingBundleName;
+        var preloadingBundleUrl = Settings.RESOURCE_URLBASE + "bundles/" + preloadingBundleName;
+        if (Caching.IsVersionCached(preloadingBundleUrl, Settings.FIXED_VERSION_NUM)) {
+            Succeeded(preloadingBundleName);
+            yield break;
+        }
 
 		// download & cache AssetBundle.
 		var www = WWW.LoadFromCacheOrDownload(preloadingBundleUrl, Settings.FIXED_VERSION_NUM, crc);
 		yield return www;
-
+        
 		while (!Caching.IsVersionCached(preloadingBundleUrl, Settings.FIXED_VERSION_NUM)) {
 			yield return null;
 		}
@@ -45,6 +54,18 @@ public class AssetBundleLoader {
 		BundleData onDemandLoadingBundle, 
 		Action<T> Succeeded
 	) where T : UnityEngine.Object {
+        if (loadingResourceNames.Contains(resourceName)) {
+            yield return null;
+        }
+        
+        if (loadedAssetDict.ContainsKey(resourceName)) {
+            var alreadyLoadedAsset = loadedAssetDict[resourceName];
+            Succeeded(alreadyLoadedAsset as T);
+            yield break; 
+        }
+        
+        loadingResourceNames.Add(resourceName);
+        
 		var onDemandLoadingBundleName = onDemandLoadingBundle.bundleName;
 		var crc = onDemandLoadingBundle.crc;
 
@@ -58,9 +79,13 @@ public class AssetBundleLoader {
 		}
 
 		var assetBundle = www.assetBundle;
-		www.Dispose();
-
+        www.Dispose();
+        
 		var loadedResource = (T)assetBundle.LoadAsset(resourceName, typeof(T));
+        loadedAssetDict[resourceName] = loadedResource;
+        
 		Succeeded(loadedResource);
+        
+        loadingResourceNames.Remove(resourceName);
 	}
 }
