@@ -25,7 +25,7 @@ public class Boot : MonoBehaviour {
 		}
 
 		// delete all cache before running.
-		// Caching.CleanCache();
+		Caching.CleanCache();
 
 		
 		// 1. load whole bundle list from web.
