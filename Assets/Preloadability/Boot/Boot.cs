@@ -225,7 +225,7 @@ public class Boot : MonoBehaviour {
 				resourceName,
 				containedBundleData,
 				(GameObject titlePrefab) => {
-					// do nothing.
+                    onDemandLoadingBundleNames.Remove(bundleName);
 				}
 			));
         }

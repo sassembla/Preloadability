@@ -26,18 +26,15 @@ public class SushiboxController : MonoBehaviour {
                         break;
                     }
                     case 1:{
-                        resourceName = resourceName + "maguro.png";
-                        // resourceName = resourceName + "tamago.png";
+                        resourceName = resourceName + "tamago.png";
                         break;
                     }
                     case 2:{
-                        resourceName = resourceName + "maguro.png";
-                        // resourceName = resourceName + "salmon.png";
+                        resourceName = resourceName + "salmon.png";
                         break;
                     }
                     case 3:{
-                        resourceName = resourceName + "maguro.png";
-                        // resourceName = resourceName + "ebi.png";
+                        resourceName = resourceName + "ebi.png";
                         break;
                     }
                 }
@@ -52,6 +49,7 @@ public class SushiboxController : MonoBehaviour {
                     containedBundleData,
                     (Sprite t) => {
                         spriteRenderer.sprite = t;
+                        spriteRenderer.transform.localScale = new Vector2(0.4f, 0.4f);
                     }
                 ));
                 break;
